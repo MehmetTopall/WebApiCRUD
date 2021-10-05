@@ -14,7 +14,7 @@ namespace API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService _userService;
+        private IService<User> _userService;
         public UsersController()
         {
             _userService = new UserManager();
@@ -26,7 +26,7 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var users = _userService.GetAllUsers();
+            var users = _userService.GetAll();
             return Ok(users); //200 + data
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace API.Controllers
         // [Route("getUserById/{id}")] => api/user/getUserById/2
         public IActionResult Get(int id)
         {
-            var users= _userService.GetUserById(id);
+            var users= _userService.GetById(id);
             if (User != null)
             {
                 return Ok(users); //200 + data
@@ -53,7 +53,7 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] User user)
         {
-            var createdUser= _userService.CreateUser(user);
+            var createdUser= _userService.Create(user);
             return CreatedAtAction("Get", new { id = createdUser.Id }, createdUser); //201 + data
           
         }
@@ -65,8 +65,8 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] User user)
         {
-            if (_userService.GetUserById(user.Id)!=null){
-                return Ok(_userService.UpdateUser(user));
+            if (_userService.GetById(user.Id)!=null){
+                return Ok(_userService.Update(user));
             }
             return NotFound("Başarısız!!!!");
             
@@ -78,9 +78,9 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_userService.GetUserById(id) != null)
+            if (_userService.GetById(id) != null)
             {
-                _userService.DeleteUser(id);
+                _userService.Delete(id);
                 return Ok("Kişi silme işlemi başarılı..");
             }
             return NotFound("Böyle bir kişi bulunamadı!!!");

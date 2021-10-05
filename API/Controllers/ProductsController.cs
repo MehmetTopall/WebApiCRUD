@@ -14,7 +14,7 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IProductService _productService;
+        private IService<Product> _productService;
         public ProductsController()
         {
             _productService = new ProductManager();
@@ -27,7 +27,7 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var products = _productService.GetAllProducts();
+            var products = _productService.GetAll();
             return Ok(products); //200 + data
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace API.Controllers
         // [Route("getProductById/{id}")] => api/products/getProductById/2
         public IActionResult Get(int id)
         {
-            var products = _productService.GetProductById(id);
+            var products = _productService.GetById(id);
             return Ok(products); //200 + data
             
             
@@ -52,7 +52,7 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Product product)
         {
-            var createdProduct = _productService.CreateProduct(product);
+            var createdProduct = _productService.Create(product);
             return CreatedAtAction("Get", new { id = createdProduct.ProductId }, createdProduct); //201 + data
 
         }
@@ -64,9 +64,9 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] Product product)
         {
-            if (_productService.GetProductById(product.ProductId) != null)
+            if (_productService.GetById(product.ProductId) != null)
             {
-                return Ok(_productService.UpdateProduct(product));
+                return Ok(_productService.Update(product));
             }
             return NotFound("Başarısız!!!!");
 
@@ -79,9 +79,9 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (_productService.GetProductById(id) != null)
+            if (_productService.GetById(id) != null)
             {
-                _productService.DeleteProduct(id);
+                _productService.Delete(id);
                 return Ok("Ürün silme işlemi başarılı..");
             }
             return NotFound("Böyle bir ürün bulunamadı!!!");
