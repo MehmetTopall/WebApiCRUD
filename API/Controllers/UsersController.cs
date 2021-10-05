@@ -55,6 +55,7 @@ namespace API.Controllers
         {
             var createdUser= _userService.CreateUser(user);
             return CreatedAtAction("Get", new { id = createdUser.Id }, createdUser); //201 + data
+          
         }
         /// <summary>
         /// Update the User
@@ -67,7 +68,7 @@ namespace API.Controllers
             if (_userService.GetUserById(user.Id)!=null){
                 return Ok(_userService.UpdateUser(user));
             }
-            return NotFound();
+            return NotFound("Başarısız!!!!");
             
         }
         /// <summary>
@@ -80,9 +81,9 @@ namespace API.Controllers
             if (_userService.GetUserById(id) != null)
             {
                 _userService.DeleteUser(id);
-                return Ok();
+                return Ok("Kişi silme işlemi başarılı..");
             }
-            return NotFound();
+            return NotFound("Böyle bir kişi bulunamadı!!!");
 
         }
 

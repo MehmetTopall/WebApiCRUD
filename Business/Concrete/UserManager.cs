@@ -10,37 +10,37 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class UserManager : IUserService
+    public class UserManager:IService<User>
     {
-        private IUserRepository _userRepository;
-
+        private IRepository<User> userRepo;
         public UserManager()
         {
-            _userRepository = new UserRepository(); 
-        }
-        public User CreateUser(User user)
-        {
-            return _userRepository.CreateUser(user);
+            userRepo = new Repository<User>();
         }
 
-        public void DeleteUser(int id)
+        public User Create(User p)
         {
-            _userRepository.DeleteUser(id);
+            return userRepo.Create(p);
         }
 
-        public List<User> GetAllUsers()
+        public void Delete(int id)
         {
-            return _userRepository.GetAllUsers();
+            userRepo.Delete(id);
         }
 
-        public User GetUserById(int id)
+        public List<User> GetAll()
         {
-            return _userRepository.GetUserById(id);
+            return userRepo.GetAll();
         }
 
-        public User UpdateUser(User user)
+        public User GetById(int id)
         {
-            return _userRepository.UpdateUser(user);
+            return userRepo.GetById(id);
+        }
+
+        public User Update(User p)
+        {
+            return userRepo.Update(p);
         }
     }
 }

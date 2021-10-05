@@ -4,6 +4,40 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="M:API.Controllers.ProductsController.Get">
+            <summary>
+            GetAllProducts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Get(System.Int32)">
+            <summary>
+            GetProductById
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Post(Entities.Product)">
+            <summary>
+            Create a Product
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Put(Entities.Product)">
+            <summary>
+            Update the Product
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.ProductsController.Delete(System.Int32)">
+            <summary>
+            Delete the Product
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:API.Controllers.UsersController.Get">
             <summary>
             Get All Users

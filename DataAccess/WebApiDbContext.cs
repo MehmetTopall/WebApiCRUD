@@ -16,5 +16,6 @@ namespace DataAccess
             optionsBuilder.UseSqlServer("Server=DESKTOP-LIMLNDB;Database=UserDB;Trusted_Connection=True");
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
