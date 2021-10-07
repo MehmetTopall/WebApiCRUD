@@ -12,10 +12,10 @@ namespace API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AutTestsController : ControllerBase
+    public class AuthenticateController : ControllerBase
     {
         private readonly IJWTAuthenticationManager jwtAuthenticationManager;
-        public AutTestsController(IJWTAuthenticationManager jwtAuthenticationManager)
+        public AuthenticateController(IJWTAuthenticationManager jwtAuthenticationManager)
         {
             this.jwtAuthenticationManager = jwtAuthenticationManager;
         }
@@ -23,10 +23,10 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "mehmet", "topal" };
+            return new string[] { "Kimlik Doğrulama İşlemi Başarılı........" };
         }
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost]
         public IActionResult Authentication([FromBody] AutPersonCredential autPersonCredential)
         {
             var token = jwtAuthenticationManager.Authenticate(autPersonCredential.UserName, autPersonCredential.Password);
