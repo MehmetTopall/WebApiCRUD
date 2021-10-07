@@ -10,6 +10,9 @@ namespace Entities
         [Required]
         [MaxLength(50)]
         public string ProductName { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string CategoryName { get; set; }
         [MaxLength(500)]
         public string ProductDetail { get; set; }
         [Required]

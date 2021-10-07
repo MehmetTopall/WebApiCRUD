@@ -37,9 +37,9 @@ namespace Business.Concrete
             return productRepo.GetById(id);
         }
 
-        public Product Update(Product p)
+        public Product Updated(Product p)
         {
-            return productRepo.Update(p);
+            return productRepo.Updated(p);
         }
     }
 }

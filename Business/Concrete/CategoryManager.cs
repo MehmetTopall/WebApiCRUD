@@ -37,9 +37,9 @@ namespace Business.Concrete
             return categoryRepo.GetById(id);
         }
 
-        public Category Update(Category p)
+        public Category Updated(Category p)
         {
-            return categoryRepo.Update(p);
+            return categoryRepo.Updated(p);
         }
     }
 }

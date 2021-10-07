@@ -18,6 +18,7 @@ namespace DataAccess.Concrete
             _object = c.Set<T>();
         }
 
+
         public T Create(T p)
         {
             _object.Add(p);
@@ -43,11 +44,12 @@ namespace DataAccess.Concrete
             return _object.Find(id);
         }
 
-        public T Update(T p)
+        public T Updated(T p)
         {
             _object.Update(p);
             c.SaveChanges();
             return p;
+            
         }
 
     }

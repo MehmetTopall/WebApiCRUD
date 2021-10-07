@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -64,7 +66,7 @@ namespace API.Controllers
         {
             if (_categoryService.GetById(category.CategoryId) != null)
             {
-                return Ok(_categoryService.Update(category));
+                return Ok(_categoryService.Updated(category));
             }
             return NotFound("Başarısız!!!!");
 

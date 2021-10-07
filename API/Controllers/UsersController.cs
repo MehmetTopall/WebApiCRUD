@@ -1,6 +1,8 @@
-﻿using Business.Abstract;
+﻿using API.Authentication;
+using Business.Abstract;
 using Business.Concrete;
 using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,15 +12,18 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private IService<User> _userService;
+        
         public UsersController()
         {
             _userService = new UserManager();
         }
+        
         /// <summary>
         /// Get All Users
         /// </summary>
@@ -51,7 +56,7 @@ namespace API.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post([FromBody] User user)
+         public IActionResult Post([FromBody] User user)
         {
             var createdUser= _userService.Create(user);
             return CreatedAtAction("Get", new { id = createdUser.Id }, createdUser); //201 + data
@@ -66,7 +71,7 @@ namespace API.Controllers
         public IActionResult Put([FromBody] User user)
         {
             if (_userService.GetById(user.Id)!=null){
-                return Ok(_userService.Update(user));
+                return Ok(_userService.Updated(user));
             }
             return NotFound("Başarısız!!!!");
             
@@ -87,12 +92,9 @@ namespace API.Controllers
 
         }
 
-
-
-
-
-
+        
 
     }
+   
 
 }

@@ -38,9 +38,9 @@ namespace Business.Concrete
             return userRepo.GetById(id);
         }
 
-        public User Update(User p)
+        public User Updated(User p)
         {
-            return userRepo.Update(p);
+            return userRepo.Updated(p);
         }
     }
 }
