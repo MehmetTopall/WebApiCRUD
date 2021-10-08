@@ -16,6 +16,7 @@ namespace DataAccess.Concrete
         public Repository()
         {
             _object = c.Set<T>();
+            c.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
 
