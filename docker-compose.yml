@@ -4,11 +4,11 @@ services:
     image: mcr.microsoft.com/mssql/server
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Docker021"
+      SA_PASSWORD: "Docker2021"
       MSSQL_PID: Express
     ports:
       - "1433:1433"
-  book-app:
+  api:
     build: .
     ports: 
       - "8090:80"
