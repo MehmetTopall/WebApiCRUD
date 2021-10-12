@@ -1,0 +1,14 @@
+﻿version: '3'
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Docker021"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+  book-app:
+    build: .
+    ports: 
+      - "8090:80"
