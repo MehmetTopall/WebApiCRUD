@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(WebApiDbContext))]
-    [Migration("20211005131609_AddCategoryNameProductDB")]
-    partial class AddCategoryNameProductDB
+    [Migration("20211015122425_AddDb")]
+    partial class AddDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

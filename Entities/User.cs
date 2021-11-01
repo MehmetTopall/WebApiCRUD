@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    public class User
+    public class User:IEntity
+
     {
         [Key]
         public int Id { get; set; }

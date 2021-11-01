@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    public class Category
+    public class Category : IEntity
     {
         [Key]
         public int CategoryId { get; set; }

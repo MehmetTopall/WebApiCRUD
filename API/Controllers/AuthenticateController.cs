@@ -1,4 +1,5 @@
 ﻿using API.Authentication;
+using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,9 +40,5 @@ namespace API.Controllers
     }
 
 
-    public class AutPersonCredential
-    {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-    }
+    
 }

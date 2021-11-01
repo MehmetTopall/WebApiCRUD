@@ -16,10 +16,10 @@ namespace API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private IService<Category> _categoryService;
-        public CategoriesController()
+        private ICategoryService _categoryService;
+        public CategoriesController(ICategoryService categoryService)
         {
-            _categoryService = new CategoryManager();
+            _categoryService = categoryService;
         }
 
         /// <summary>
@@ -50,11 +50,11 @@ namespace API.Controllers
         /// <param name="category"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post([FromBody] Category category)
+        public IActionResult Post(Category category)
         {
-            var createdCate = _categoryService.Create(category);
-            return CreatedAtAction("Get", new { id = createdCate.CategoryId }, createdCate); //201 + data
-
+            _categoryService.Add(category);
+            return Ok();
+            
         }
         /// <summary>
         /// Update the Category
@@ -62,11 +62,12 @@ namespace API.Controllers
         /// <param name="category"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult Put([FromBody] Category category)
+        public IActionResult Put(Category category)
         {
             if (_categoryService.GetById(category.CategoryId) != null)
             {
-                return Ok(_categoryService.Updated(category));
+                _categoryService.Update(category);
+                return Ok("Kategori güncelleme işlemi başarılı..");
             }
             return NotFound("Başarısız!!!!");
 

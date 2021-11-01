@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,9 +18,7 @@ namespace API.Authentication
             _key = key;
         }
         private readonly IDictionary<string, string> autperson = new Dictionary<string, string>
-        {
-            {"autperson","autpass" },{"autperson1","autpass1" }
-        };
+        {{"autperson","autpass" },{"autperson1","autpass1" }};
         public string Authenticate(string userName, string password)
         {
             if (!autperson.Any(x=>x.Key==userName && x.Value == password))

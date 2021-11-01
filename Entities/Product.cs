@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entities
 {
-    public class Product
+    public class Product:IEntity
     {
         [Key]
         public int ProductId { get; set; }

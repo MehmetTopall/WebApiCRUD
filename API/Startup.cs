@@ -1,7 +1,13 @@
 ﻿using API.Authentication;
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +34,10 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<ICategoryService,CategoryManager>();
+            services.AddSingleton<ICategoryDal, EfCategoryDal>();
+            //services.AddDbContext<WebApiDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTitle", Version = "v1" });
@@ -77,6 +87,7 @@ namespace API
             });
             services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(key));
 
+            
 
         }
 

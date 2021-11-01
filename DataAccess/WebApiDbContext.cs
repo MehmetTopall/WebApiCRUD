@@ -1,23 +1,18 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class WebApiDbContext:DbContext
+    public class WebApiDbContext:DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=DESKTOP-LIMLNDB;Database=UserDB;Trusted_Connection=True");
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+          => options.UseSqlServer("Server=DESKTOP-LIMLNDB;Database=UserDB;Trusted_connection=true;");
 
-           
-        }
+        //public WebApiDbContext(DbContextOptions<WebApiDbContext> options) : base(options) { }
+
         
+
+
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

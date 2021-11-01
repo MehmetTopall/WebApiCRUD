@@ -10,36 +10,53 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CategoryManager : IService<Category>
+    public class CategoryManager : ICategoryService
     {
-        private IRepository<Category> categoryRepo;
-        public CategoryManager()
+        ICategoryDal _categoryDal;
+
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            categoryRepo = new Repository<Category>();
+            _categoryDal = categoryDal;
         }
-        public Category Create(Category p)
+
+        public void Add(Category entity)
         {
-            return categoryRepo.Create(p);
+            _categoryDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            categoryRepo.Delete(id);
+            _categoryDal.Delete(id);
         }
+
+        //public void Create(Category entity)
+        //{
+
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public List<Category> GetAll()
         {
-            return categoryRepo.GetAll();
+            return _categoryDal.GetAll();
         }
 
         public Category GetById(int id)
         {
-            return categoryRepo.GetById(id);
+            return _categoryDal.GetById(id);
         }
 
-        public Category Updated(Category p)
+        public void Update(Category entity)
         {
-            return categoryRepo.Updated(p);
+            _categoryDal.Update(entity);
         }
+
+        //public Category Update(Category entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

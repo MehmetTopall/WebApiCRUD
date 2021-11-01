@@ -48,7 +48,7 @@ namespace API.Controllers
             {
                 return Ok(users); //200 + data
             }
-            return NotFound(); //404
+            return NotFound("Böyle bir kullanıcı bulunmamaktadır!!!!"); //404
         }
         /// <summary>
         /// Create a User
