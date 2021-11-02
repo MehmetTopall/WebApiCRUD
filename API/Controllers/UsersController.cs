@@ -17,11 +17,11 @@ namespace API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IService<User> _userService;
+        private IUserService _userService;
         
-        public UsersController()
+        public UsersController(IUserService userService)
         {
-            _userService = new UserManager();
+            _userService = userService;
         }
         
         /// <summary>
@@ -58,8 +58,8 @@ namespace API.Controllers
         [HttpPost]
          public IActionResult Post([FromBody] User user)
         {
-            var createdUser= _userService.Create(user);
-            return CreatedAtAction("Get", new { id = createdUser.Id }, createdUser); //201 + data
+            _userService.Add(user);
+            return Ok("Ekleme işlemi başarılı...Eklenen kişi: "+user.Name); //201 + data
           
         }
         /// <summary>
@@ -70,8 +70,10 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] User user)
         {
-            if (_userService.GetById(user.Id)!=null){
-                return Ok(_userService.Updated(user));
+            if (_userService.GetById(user.Id)!=null)
+            {
+                _userService.Update(user);
+                return Ok(user.Name+" adlı kullanıcının bilgileri başarılı bir şekilde güncellendi.");
             }
             return NotFound("Başarısız!!!!");
             

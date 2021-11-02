@@ -16,10 +16,10 @@ namespace API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IService<Product> _productService;
-        public ProductsController()
+        private IProductService _productService;
+        public ProductsController(IProductService productService)
         {
-            _productService = new ProductManager();
+            _productService = productService;
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Product product)
         {
-            var createdProduct = _productService.Create(product);
-            return CreatedAtAction("Get", new { id = createdProduct.ProductId }, createdProduct); //201 + data
+            _productService.Add(product);
+            return Ok(); //201 + data
 
         }
         /// <summary>
@@ -68,7 +68,8 @@ namespace API.Controllers
         {
             if (_productService.GetById(product.ProductId) != null)
             {
-                return Ok(_productService.Updated(product));
+                _productService.Update(product);
+                return Ok();
             }
             return NotFound("Başarısız!!!!");
 

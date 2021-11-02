@@ -36,6 +36,10 @@ namespace API
             services.AddControllers();
             services.AddSingleton<ICategoryService,CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
+            services.AddSingleton<IProductService, ProductManager>();
+            services.AddSingleton<IProductDal, EfProductDal>(); 
+            services.AddSingleton<IUserService, UserManager>();
+            services.AddSingleton<IUserDal, EfUserDal>();
             //services.AddDbContext<WebApiDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>

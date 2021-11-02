@@ -29,15 +29,6 @@ namespace Business.Concrete
             _categoryDal.Delete(id);
         }
 
-        //public void Create(Category entity)
-        //{
-
-        //}
-
-        //public void Delete(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public List<Category> GetAll()
         {
@@ -54,9 +45,6 @@ namespace Business.Concrete
             _categoryDal.Update(entity);
         }
 
-        //public Category Update(Category entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
     }
 }

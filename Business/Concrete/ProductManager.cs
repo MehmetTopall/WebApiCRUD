@@ -10,36 +10,36 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ProductManager : IService<Product>
+    public class ProductManager : IProductService
     {
-        private IRepository<Product> productRepo;
-        public ProductManager()
+        IProductDal _productDal;
+        public ProductManager(IProductDal productDal)
         {
-            productRepo = new Repository<Product>();
+            _productDal = productDal;
         }
-        public Product Create(Product p)
+        public void Add(Product entity)
         {
-            return productRepo.Create(p);
+            _productDal.Add(entity);
         }
 
         public void Delete(int id)
         {
-            productRepo.Delete(id);
+            _productDal.Delete(id);
         }
 
         public List<Product> GetAll()
         {
-            return productRepo.GetAll();
+            return _productDal.GetAll();
         }
 
         public Product GetById(int id)
         {
-            return productRepo.GetById(id);
+            return _productDal.GetById(id);
         }
 
-        public Product Updated(Product p)
+        public void Update(Product entity)
         {
-            return productRepo.Updated(p);
+            _productDal.Update(entity);
         }
     }
 }

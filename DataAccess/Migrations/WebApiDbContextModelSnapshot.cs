@@ -42,10 +42,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductDetail")
                         .HasMaxLength(500)

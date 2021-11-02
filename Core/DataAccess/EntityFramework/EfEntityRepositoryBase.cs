@@ -24,11 +24,6 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        //public void Delete(TEntity entity)
-        //{
-            
-        //}
-
         public void Delete(int id)
         {
             using (TContext context = new TContext())
@@ -39,12 +34,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        //public TEntity Get(int id)
-        //{
-
-        //}
-
-
+        
 
         public List<TEntity> GetAll()
         {
