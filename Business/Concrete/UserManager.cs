@@ -29,6 +29,7 @@ namespace Business.Concrete
 
         public List<User> GetAll()
         {
+            
             return _userDal.GetAll();
         }
 

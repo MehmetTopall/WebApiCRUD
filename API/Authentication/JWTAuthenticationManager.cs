@@ -18,13 +18,16 @@ namespace API.Authentication
             _key = key;
         }
         private readonly IDictionary<string, string> autperson = new Dictionary<string, string>
-        {{"autperson","autpass" },{"autperson1","autpass1" }};
+        {
+            {"admin","admin12345" },{"user","user12345" }
+        };
         public string Authenticate(string userName, string password)
         {
-            if (!autperson.Any(x=>x.Key==userName && x.Value == password))
+            if (!autperson.Any(x => x.Key == userName && x.Value == password))
             {
                 return null;
             }
+
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(_key);
