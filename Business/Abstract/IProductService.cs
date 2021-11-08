@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Core.Utilities.Results;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        Product GetById(int id);
-        void Add(Product entity);
-        void Update(Product entity);
-        void Delete(int id);
+        IDataResult<List<Product>> GetAll();
+        IDataResult<Product> GetById(int id);
+        IResult Add(Product entity);
+        IResult Update(Product entity);
+        IResult Delete(int id);
     }
 }

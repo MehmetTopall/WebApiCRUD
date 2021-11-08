@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Constants;
+using Core.Utilities.Results;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -82,11 +84,18 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            
             if (_productService.GetById(id) != null)
             {
-                _productService.Delete(id);
-                return Ok("Ürün silme işlemi başarılı..");
+                var result= _productService.Delete(id);
+                if(result.Success)
+                {
+                    return Ok(result.Message);
+                }
+                return NotFound(result.Message);
+    
             }
+            
             return NotFound("Böyle bir ürün bulunamadı!!!");
 
         }
