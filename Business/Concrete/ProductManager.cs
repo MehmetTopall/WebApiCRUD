@@ -51,6 +51,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
         }
 
+        
+        public IDataResult<List<Product>> GetAllByCategoryName(string name)
+        {
+            
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryName == name));
+        }
+
         public IDataResult<Product> GetById(int id)
         {
             return new SuccessDataResult<Product>(_productDal.GetById(id));

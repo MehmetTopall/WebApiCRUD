@@ -34,6 +34,18 @@ namespace API.Controllers
             var products = _productService.GetAll();
             return Ok(products); //200 + data
         }
+        [HttpGet("getbycategory")]
+        public IActionResult GetAllByCategoryName(string categoryName)
+        {
+            var result = _productService.GetAllByCategoryName(categoryName);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         /// <summary>
         /// GetProductById
         /// </summary>
@@ -56,8 +68,12 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Product product)
         {
-            _productService.Add(product);
-            return Ok(); //201 + data
+            var result=_productService.Add(product);
+            if (result.Success)
+            {
+                return Ok(product.ProductName+" ürünü eklendi"); //201 + data
+            }
+            return BadRequest("Ürün eklenemedi.Lütfen bilgileri doğruluğunu kontrol ediniz."); //201 + data
 
         }
         /// <summary>
