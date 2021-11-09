@@ -15,5 +15,6 @@ namespace Business.Constants
         public static string ProductsListed = "Ürünler listelendi";
         public static string ProductDeleted = "Ürün silindi";
         public static string ProductNotDeletable = "Bu ürün silinemez";
+        //bu branch için deneme yorumudur.
     }
 }
