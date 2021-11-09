@@ -56,7 +56,7 @@ namespace API.Controllers
         public IActionResult Get(int id)
         {
             var products = _productService.GetById(id);
-            return Ok(products); //200 + data
+            return Ok(products.Data); //200 + data
             
             
         }
@@ -71,9 +71,9 @@ namespace API.Controllers
             var result=_productService.Add(product);
             if (result.Success)
             {
-                return Ok(product.ProductName+" ürünü eklendi"); //201 + data
+                return Ok(result.Message); //201 + data
             }
-            return BadRequest("Ürün eklenemedi.Lütfen bilgileri doğruluğunu kontrol ediniz."); //201 + data
+            return BadRequest(result.Message);
 
         }
         /// <summary>
@@ -84,12 +84,17 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] Product product)
         {
+            
             if (_productService.GetById(product.ProductId) != null)
             {
-                _productService.Update(product);
-                return Ok();
+                var result = _productService.Update(product);
+                if (result.Success)
+                {
+                    return Ok(result.Message);
+                }
+                return BadRequest(result.Message);
             }
-            return NotFound("Başarısız!!!!");
+            return NotFound();
 
         }
         /// <summary>
