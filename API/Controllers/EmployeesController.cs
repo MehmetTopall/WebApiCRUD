@@ -41,7 +41,30 @@ namespace API.Controllers
             var employees = _employeeService.GetById(id);
             return Ok(employees); //200 + data
         }
-        
+
+        /// <summary>
+        /// getbyparent
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("getbyparent")]
+        public IActionResult GetByParent(int id)
+        {
+            var result = _employeeService.GetByParent(id);
+            return Ok(result);
+        }
+        /// <summary>
+        /// getbyparent
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("getallchildbyparent")]
+        public IActionResult GetAllChildByParent(int id)
+        {
+            var result = _employeeService.GetAllChildByParent(id);
+            return Ok(result);
+        }
+
         /// <summary>
         /// Create an Employees
         /// </summary>

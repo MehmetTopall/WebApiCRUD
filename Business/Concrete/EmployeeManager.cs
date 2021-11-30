@@ -31,12 +31,20 @@ namespace Business.Concrete
             return _employeeDal.GetAll();
         }
 
+        public List<Employee> GetAllChildByParent(int id)
+        {
+            return _employeeDal.GetAllChildByParent(id);
+        }
+
         public Employee GetById(int id)
         {
             return _employeeDal.GetById(id);
         }
 
-       
+        public List<Employee> GetByParent(int id)
+        {
+            return _employeeDal.GetAll(p => p.ParentId == id);
+        }
 
         public void Update(Employee entity)
         {
