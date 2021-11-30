@@ -40,6 +40,8 @@ namespace API
             services.AddSingleton<IProductDal, EfProductDal>(); 
             services.AddSingleton<IUserService, UserManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
+            services.AddSingleton<IEmployeeService, EmployeeManager>();
+            services.AddSingleton<IEmployeeDal, EfEmployeeDal>();
             //services.AddDbContext<WebApiDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>

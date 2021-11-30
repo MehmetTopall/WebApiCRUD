@@ -6,7 +6,6 @@ namespace Entities
 {
     public class Category : IEntity
     {
-        [Key]
         public int CategoryId { get; set; }
         [Required]
         [MaxLength(50)]

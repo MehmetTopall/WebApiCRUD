@@ -17,5 +17,6 @@ namespace DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<AutPersonCredential> AutPersonCredentials { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

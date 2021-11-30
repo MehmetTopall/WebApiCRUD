@@ -35,9 +35,9 @@ namespace API.Controllers
             return Ok(products); //200 + data
         }
         [HttpGet("getbycategory")]
-        public IActionResult GetAllByCategoryName(string categoryName)
+        public IActionResult GetAllByCategoryName(int id)
         {
-            var result = _productService.GetAllByCategoryName(categoryName);
+            var result = _productService.GetAllByCategoryName(id);
             if (result.Success)
             {
                 return Ok(result);
